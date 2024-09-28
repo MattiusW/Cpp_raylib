@@ -17,12 +17,14 @@ int main()
     Game game = Game();
     Words words = Words();
 
-    game.DrawWord(words.ViewWords());
+    std::string randWord = game.DrawWord(words.ViewWords());
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(darkGreen);
+        // Convert word to view
+        DrawText(randWord.c_str(), 200, 200, 100, WHITE);
         EndDrawing();
     }
 
