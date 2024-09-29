@@ -1,4 +1,5 @@
 #include "words.hpp"
+#include "iostream"
 
 Words::Words()
 {
@@ -25,4 +26,17 @@ void Words::DrawLines(int wordSize)
         DrawText("_", position.x + space, position.y, 50, WHITE);
         space += 70;
     }
+}
+
+char *Words::GetChars(std::string word, int wordSize)
+{
+    char *wordArray = new char[wordSize];
+
+    for (int i = 0; i < wordSize; i++)
+    {
+        std::cout << word[i] << std::endl;
+        wordArray[i] = word[i];
+    }
+
+    return wordArray;
 }

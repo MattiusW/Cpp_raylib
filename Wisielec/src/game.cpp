@@ -8,6 +8,13 @@ Game::Game()
     drawNumber = 0;
 }
 
+bool Game::CompareWords()
+{   
+    
+
+    return false;
+}
+
 std::string Game::DrawWord(std::vector<std::string> words)
 {
     // Initialize random seed
@@ -19,3 +26,4 @@ std::string Game::DrawWord(std::vector<std::string> words)
 
     return words[drawNumber];
 };
+

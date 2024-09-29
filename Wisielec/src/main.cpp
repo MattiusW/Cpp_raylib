@@ -16,6 +16,9 @@ int main()
     SetTargetFPS(60);
 
     Game game = Game();
+
+    // TEST
+
     Words words = Words();
 
     std::string randWord = game.DrawWord(words.ViewWords());
@@ -23,7 +26,14 @@ int main()
     int sizeWord = words.GetWordSize(randWord);
 
     std::cout << "SIZE: " << sizeWord << std::endl;
+    std::cout << "WORD: " << randWord << std::endl;
 
+    char *charArrayWord = words.GetChars(randWord, sizeWord);
+
+    for (int i = 0; i < sizeWord; i++)
+    {
+        std::cout << "Litera z tablicy charow: " << charArrayWord[i] << std::endl;
+    }
 
     while (!WindowShouldClose())
     {

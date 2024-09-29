@@ -9,6 +9,7 @@ public:
     std::vector<std::string> ViewWords();
     int GetWordSize(std::string word);
     void DrawLines(int wordSize);
+    char *GetChars(std::string word, int wordSize);
 
 private:
     std::vector<std::string> words;

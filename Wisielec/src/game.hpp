@@ -6,6 +6,7 @@ class Game
 {
 public:
     Game();
+    bool CompareWords();
     std::string DrawWord(std::vector<std::string>);
 
 private:
