@@ -8,9 +8,27 @@ Game::Game()
     drawNumber = 0;
 }
 
-bool Game::CompareWords()
-{   
-    
+char Game::HandleInput()
+{
+    char guest = '?';
+
+    if (IsKeyPressed(KEY_A))
+        guest = 'a';
+    if (IsKeyPressed(KEY_E))
+        guest = 'e';
+    if (IsKeyPressed(KEY_O))
+        guest = 'o';
+
+    return guest;
+}
+
+bool Game::CompareWords(char *guestWord, char guestSign, int wordSize)
+{
+    for (int i = 0; i < wordSize; i++)
+    {
+        if (guestSign == guestWord[i])
+            return true;
+    }
 
     return false;
 }
@@ -26,4 +44,3 @@ std::string Game::DrawWord(std::vector<std::string> words)
 
     return words[drawNumber];
 };
-

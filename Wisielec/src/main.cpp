@@ -28,6 +28,7 @@ int main()
     std::cout << "SIZE: " << sizeWord << std::endl;
     std::cout << "WORD: " << randWord << std::endl;
 
+    // Separate word in table char
     char *charArrayWord = words.GetChars(randWord, sizeWord);
 
     for (int i = 0; i < sizeWord; i++)
@@ -42,6 +43,14 @@ int main()
         // Convert word to view
         DrawText(randWord.c_str(), 100, 100, 100, WHITE);
         words.DrawLines(sizeWord);
+
+        char sign = game.HandleInput();
+        bool check = game.CompareWords(charArrayWord, sign, sizeWord);
+
+        if (check)
+        {
+            std::cout << "Zgadłeś " << std::endl;
+        }
 
         EndDrawing();
     }
