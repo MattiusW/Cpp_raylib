@@ -16,13 +16,12 @@ int main()
     SetTargetFPS(60);
 
     Game game = Game();
-
-    // TEST
-
     Words words = Words();
 
+    // Draw number
     std::string randWord = game.DrawWord(words.ViewWords());
 
+    // Get word Size
     int sizeWord = words.GetWordSize(randWord);
 
     std::cout << "SIZE: " << sizeWord << std::endl;
@@ -31,21 +30,20 @@ int main()
     // Separate word in table char
     char *charArrayWord = words.GetChars(randWord, sizeWord);
 
-    for (int i = 0; i < sizeWord; i++)
-    {
-        std::cout << "Litera z tablicy charow: " << charArrayWord[i] << std::endl;
-    }
-
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(darkGreen);
         // Convert word to view
         DrawText(randWord.c_str(), 100, 100, 100, WHITE);
-        words.DrawLines(sizeWord);
 
+        // Input sign
         char sign = game.HandleInput();
+        // Check sign
         bool check = game.CompareWords(charArrayWord, sign, sizeWord);
+
+        // Draw lines
+        words.DrawLines(sizeWord, charArrayWord);
 
         if (check)
         {
@@ -55,6 +53,8 @@ int main()
         EndDrawing();
     }
 
+    // Delete table
+    delete[] charArrayWord;
     CloseWindow();
     return 0;
 }

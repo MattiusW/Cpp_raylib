@@ -18,14 +18,10 @@ int Words::GetWordSize(std::string word)
     return word.size();
 }
 
-void Words::DrawLines(int wordSize)
+void Words::DrawLines(int wordSize, char *arrayWord)
 {
-    int space = 0;
-    for (int i = 0; i < wordSize; i++)
-    {
-        DrawText("_", position.x + space, position.y, 50, WHITE);
-        space += 70;
-    }
+    arrayWord[wordSize] = '\0'; // Must finish array end sign, array end sign
+    DrawText(arrayWord, position.x, position.y, 50, WHITE);
 }
 
 char *Words::GetChars(std::string word, int wordSize)

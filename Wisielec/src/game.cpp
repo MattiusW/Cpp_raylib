@@ -10,14 +10,20 @@ Game::Game()
 
 char Game::HandleInput()
 {
-    char guest = '?';
+    char guest = '\0';
 
     if (IsKeyPressed(KEY_A))
+    {
         guest = 'a';
+    }
     if (IsKeyPressed(KEY_E))
+    {
         guest = 'e';
+    }
     if (IsKeyPressed(KEY_O))
+    {
         guest = 'o';
+    }
 
     return guest;
 }
