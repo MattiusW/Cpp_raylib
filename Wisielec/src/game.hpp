@@ -11,7 +11,7 @@ public:
     char *CompareWords(char *guestWord, char *blackTable, char guestSign, int wordSize);
     void Win(char *guestTable, char *blackTable);
     void Lose(int life);
-    bool Chance(char *guestWord, char guestSign, int wordSize, int chance);
+    bool Chance(char *guestWord, char guestSign, int wordSize);
     std::string DrawWord(std::vector<std::string>);
 
 private:

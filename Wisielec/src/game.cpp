@@ -152,15 +152,15 @@ void Game::Lose(int life)
     }
 }
 
-bool Game::Chance(char *guestWord, char guestSign, int wordSize, int chance)
+bool Game::Chance(char *guestWord, char guestSign, int wordSize)
 {
     for (int i = 0; i < wordSize; i++)
     {
-        if (guestSign != guestWord[i])
+        if (guestSign == guestWord[i])
         {
-            return false;
+            return true;
         }
     }
 
-    return true;
+    return false;
 }

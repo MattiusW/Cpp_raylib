@@ -44,10 +44,7 @@ int main()
         BeginDrawing();
         ClearBackground(darkGreen);
         // Convert word to view
-        // DrawText(randWord.c_str(), 100, 100, 100, WHITE);
-
-        bool chance = true;
-
+        DrawText(randWord.c_str(), 100, 100, 100, WHITE);
         // Input sign
         char sign = game.HandleInput();
         // Check sign
@@ -57,16 +54,17 @@ int main()
 
         if (sign)
         {
-            bool checkChance = game.Chance(charArrayWord, sign, sizeWord, chance);
-            chance = checkChance;
-            if (chance == 0 && life > 0)
+            bool checkChance = game.Chance(charArrayWord, sign, sizeWord);
+
+            if (checkChance == 0 && life > 0)
             {
                 life--;
             };
+            std::cout << "Szanse: " << checkChance << std::endl;
+            std::cout << "Zycia: " << life << std::endl;
         }
 
-        // std::cout << "Szanse: " << chance << std::endl;
-        std::cout << "Life: " << life << std::endl;
+        // std::cout << "Life: " << life << std::endl;
 
         // Win Condition
         game.Win(charArrayWord, blackWordsTable);
