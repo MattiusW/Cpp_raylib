@@ -7,7 +7,7 @@ class Game
 public:
     Game();
     char HandleInput();
-    bool CompareWords(char *guestWord, char guestSign, int wordSize);
+    char *CompareWords(char *guestWord, char *blackTable, char guestSign, int wordSize);
     std::string DrawWord(std::vector<std::string>);
 
 private:

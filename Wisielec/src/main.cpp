@@ -30,6 +30,13 @@ int main()
     // Separate word in table char
     char *charArrayWord = words.GetChars(randWord, sizeWord);
 
+    char *blackWordsTable = words.BlackWords(sizeWord);
+
+    for (int i = 0; i < sizeWord; i++)
+    {
+        std::cout << "Black table: " << blackWordsTable[i] << std::endl;
+    }
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
@@ -40,21 +47,14 @@ int main()
         // Input sign
         char sign = game.HandleInput();
         // Check sign
-        bool check = game.CompareWords(charArrayWord, sign, sizeWord);
+        char *guestTable = game.CompareWords(charArrayWord, blackWordsTable, sign, sizeWord);
 
-        // Draw lines
-        words.DrawLines(sizeWord, charArrayWord);
-
-        if (check)
-        {
-            std::cout << "Zgadłeś " << std::endl;
-        }
+        words.DrawLines(sizeWord, guestTable);
 
         EndDrawing();
     }
-
+    CloseWindow();
     // Delete table
     delete[] charArrayWord;
-    CloseWindow();
     return 0;
 }

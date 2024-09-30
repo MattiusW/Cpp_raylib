@@ -36,3 +36,15 @@ char *Words::GetChars(std::string word, int wordSize)
 
     return wordArray;
 }
+
+char *Words::BlackWords(int wordSize)
+{
+    char *blackWordArray = new char[wordSize];
+
+    for (int i = 0; i < wordSize; i++)
+    {
+        blackWordArray[i] = '_';
+    }
+
+    return blackWordArray;
+}

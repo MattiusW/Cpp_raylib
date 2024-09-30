@@ -10,6 +10,7 @@ public:
     int GetWordSize(std::string word);
     void DrawLines(int wordSize, char *arrayWord);
     char *GetChars(std::string word, int wordSize);
+    char *BlackWords(int wordSize);
 
 private:
     std::vector<std::string> words;

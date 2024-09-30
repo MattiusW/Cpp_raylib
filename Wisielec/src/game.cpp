@@ -16,27 +16,111 @@ char Game::HandleInput()
     {
         guest = 'a';
     }
+    if (IsKeyPressed(KEY_B))
+    {
+        guest = 'b';
+    }
+    if (IsKeyPressed(KEY_C))
+    {
+        guest = 'c';
+    }
+    if (IsKeyPressed(KEY_D))
+    {
+        guest = 'd';
+    }
     if (IsKeyPressed(KEY_E))
     {
         guest = 'e';
+    }
+    if (IsKeyPressed(KEY_F))
+    {
+        guest = 'f';
+    }
+    if (IsKeyPressed(KEY_G))
+    {
+        guest = 'g';
+    }
+    if (IsKeyPressed(KEY_H))
+    {
+        guest = 'h';
+    }
+    if (IsKeyPressed(KEY_I))
+    {
+        guest = 'i';
+    }
+    if (IsKeyPressed(KEY_J))
+    {
+        guest = 'j';
+    }
+    if (IsKeyPressed(KEY_K))
+    {
+        guest = 'k';
+    }
+    if (IsKeyPressed(KEY_L))
+    {
+        guest = 'l';
+    }
+    if (IsKeyPressed(KEY_M))
+    {
+        guest = 'm';
+    }
+    if (IsKeyPressed(KEY_N))
+    {
+        guest = 'n';
     }
     if (IsKeyPressed(KEY_O))
     {
         guest = 'o';
     }
+    if (IsKeyPressed(KEY_P))
+    {
+        guest = 'p';
+    }
+    if (IsKeyPressed(KEY_R))
+    {
+        guest = 'r';
+    }
+    if (IsKeyPressed(KEY_S))
+    {
+        guest = 's';
+    }
+    if (IsKeyPressed(KEY_T))
+    {
+        guest = 't';
+    }
+    if (IsKeyPressed(KEY_U))
+    {
+        guest = 'u';
+    }
+    if (IsKeyPressed(KEY_W))
+    {
+        guest = 'w';
+    }
+    if (IsKeyPressed(KEY_Y))
+    {
+        guest = 'y';
+    }
+    if (IsKeyPressed(KEY_X))
+    {
+        guest = 'x';
+    }
+    if (IsKeyPressed(KEY_Z))
+    {
+        guest = 'z';
+    }
 
     return guest;
 }
 
-bool Game::CompareWords(char *guestWord, char guestSign, int wordSize)
+char *Game::CompareWords(char *guestTable, char *blackTable, char guestSign, int wordSize)
 {
     for (int i = 0; i < wordSize; i++)
     {
-        if (guestSign == guestWord[i])
-            return true;
+        if (guestSign == guestTable[i])
+            blackTable[i] = guestSign;
     }
 
-    return false;
+    return blackTable;
 }
 
 std::string Game::DrawWord(std::vector<std::string> words)
