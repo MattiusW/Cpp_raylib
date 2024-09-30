@@ -34,6 +34,8 @@ char *Words::GetChars(std::string word, int wordSize)
         wordArray[i] = word[i];
     }
 
+    wordArray[wordSize] = '\0';
+
     return wordArray;
 }
 
@@ -45,6 +47,8 @@ char *Words::BlackWords(int wordSize)
     {
         blackWordArray[i] = '_';
     }
+
+    blackWordArray[wordSize] = '\0'; // Must end create table empty sign
 
     return blackWordArray;
 }

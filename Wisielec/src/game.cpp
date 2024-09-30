@@ -6,13 +6,14 @@
 Game::Game()
 {
     drawNumber = 0;
+    chance = true;
 }
 
 char Game::HandleInput()
 {
     char guest = '\0';
 
-    if (IsKeyPressed(KEY_A))
+    if (IsKeyDown(KEY_A))
     {
         guest = 'a';
     }
@@ -134,3 +135,32 @@ std::string Game::DrawWord(std::vector<std::string> words)
 
     return words[drawNumber];
 };
+
+void Game::Win(char *guestTable, char *blackTable)
+{
+    if (strcmp(guestTable, blackTable) == 0)
+    {
+        DrawText("YOU WIN", 100, 100, 100, GOLD);
+    }
+}
+
+void Game::Lose(int life)
+{
+    if (life == 0)
+    {
+        DrawText("You LOSE!", 200, 200, 50, RED);
+    }
+}
+
+bool Game::Chance(char *guestWord, char guestSign, int wordSize, int chance)
+{
+    for (int i = 0; i < wordSize; i++)
+    {
+        if (guestSign != guestWord[i])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}

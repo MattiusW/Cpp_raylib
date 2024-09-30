@@ -32,6 +32,8 @@ int main()
 
     char *blackWordsTable = words.BlackWords(sizeWord);
 
+    int life = 3;
+
     for (int i = 0; i < sizeWord; i++)
     {
         std::cout << "Black table: " << blackWordsTable[i] << std::endl;
@@ -42,7 +44,9 @@ int main()
         BeginDrawing();
         ClearBackground(darkGreen);
         // Convert word to view
-        DrawText(randWord.c_str(), 100, 100, 100, WHITE);
+        // DrawText(randWord.c_str(), 100, 100, 100, WHITE);
+
+        bool chance = true;
 
         // Input sign
         char sign = game.HandleInput();
@@ -50,6 +54,24 @@ int main()
         char *guestTable = game.CompareWords(charArrayWord, blackWordsTable, sign, sizeWord);
 
         words.DrawLines(sizeWord, guestTable);
+
+        if (sign)
+        {
+            bool checkChance = game.Chance(charArrayWord, sign, sizeWord, chance);
+            chance = checkChance;
+            if (chance == 0 && life > 0)
+            {
+                life--;
+            };
+        }
+
+        // std::cout << "Szanse: " << chance << std::endl;
+        std::cout << "Life: " << life << std::endl;
+
+        // Win Condition
+        game.Win(charArrayWord, blackWordsTable);
+
+        game.Lose(life);
 
         EndDrawing();
     }
