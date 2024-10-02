@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include <vector>
 #include <string>
+#include <cstring>
 #include <iostream>
 #include "game.hpp"
 #include "words.hpp"
@@ -30,7 +31,11 @@ int main()
     // Separate word in table char
     char *charArrayWord = words.GetChars(randWord, sizeWord);
 
+    char sign;
+
     char *blackWordsTable = words.BlackWords(sizeWord);
+
+    bool gameover = false;
 
     int life = 7;
 
@@ -45,8 +50,11 @@ int main()
         ClearBackground(darkGreen);
         // Convert word to view
         // DrawText(randWord.c_str(), 100, 100, 100, WHITE);
+
         // Input sign
-        char sign = game.HandleInput();
+        if (!gameover)
+            sign = game.HandleInput();
+
         // Check sign
         char *guestTable = game.CompareWords(charArrayWord, blackWordsTable, sign, sizeWord);
 
@@ -64,12 +72,17 @@ int main()
             std::cout << "Zycia: " << life << std::endl;
         }
 
+        if (life == 0)
+            gameover = true;
+
         // std::cout << "Life: " << life << std::endl;
 
         // Win Condition
         game.Win(charArrayWord, blackWordsTable);
-
         game.Lose(life);
+
+        if (strcmp(charArrayWord, blackWordsTable) == 0)
+            gameover = true;
 
         EndDrawing();
     }
