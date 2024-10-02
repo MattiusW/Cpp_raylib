@@ -3,7 +3,7 @@
 
 Words::Words()
 {
-    words = {"cat", "dog", "turtle", "koala"};
+    words = {"koala", "cat", "dog", "turtle"};
     position.x = 300;
     position.y = 300;
 }

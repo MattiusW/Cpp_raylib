@@ -32,7 +32,7 @@ int main()
 
     char *blackWordsTable = words.BlackWords(sizeWord);
 
-    int life = 3;
+    int life = 7;
 
     for (int i = 0; i < sizeWord; i++)
     {
@@ -44,7 +44,7 @@ int main()
         BeginDrawing();
         ClearBackground(darkGreen);
         // Convert word to view
-        DrawText(randWord.c_str(), 100, 100, 100, WHITE);
+        // DrawText(randWord.c_str(), 100, 100, 100, WHITE);
         // Input sign
         char sign = game.HandleInput();
         // Check sign
@@ -74,7 +74,5 @@ int main()
         EndDrawing();
     }
     CloseWindow();
-    // Delete table
-    delete[] charArrayWord;
     return 0;
 }
