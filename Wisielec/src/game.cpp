@@ -13,7 +13,7 @@ char Game::HandleInput()
 {
     char guest = '\0';
 
-    if (IsKeyDown(KEY_A))
+    if (IsKeyPressed(KEY_A))
     {
         guest = 'a';
     }
@@ -126,21 +126,27 @@ char *Game::CompareWords(char *guestTable, char *blackTable, char guestSign, int
 
 std::string Game::DrawWord(std::vector<std::string> words)
 {
-    // Initialize random seed
-    srand(time(NULL));
-    drawNumber = rand() % words.size();
+    std::string drawnWord;
 
-    std::cout << drawNumber << std::endl;
+    if (!words.empty())
+    {
+        srand(time(NULL)); // Initialize random seed
+        drawNumber = rand() % words.size();
+        drawnWord = words[drawNumber];
+        words.erase(words.begin() + drawNumber);
+    }
+
+    std::cout << "WordSize: " << words.size() << std::endl;
     std::cout << words[drawNumber] << std::endl;
 
-    return words[drawNumber];
+    return drawnWord;
 };
 
 void Game::Win(char *guestTable, char *blackTable)
 {
     if (strcmp(guestTable, blackTable) == 0)
     {
-        DrawText("YOU WIN!", 50, 100, 50, GOLD);
+        DrawText("YOU GUEST!", 50, 100, 50, GOLD);
     }
 }
 

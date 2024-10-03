@@ -8,7 +8,7 @@ Words::Words()
     position.y = 300;
 }
 
-std::vector<std::string> Words::ViewWords()
+std::vector<std::string> &Words::ViewWords()
 {
     return words;
 }

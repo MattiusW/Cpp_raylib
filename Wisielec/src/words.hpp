@@ -6,7 +6,7 @@ class Words
 {
 public:
     Words();
-    std::vector<std::string> ViewWords();
+    std::vector<std::string> &ViewWords();
     int GetWordSize(std::string word);
     void DrawLines(int wordSize, char *arrayWord);
     char *GetChars(std::string word, int wordSize);

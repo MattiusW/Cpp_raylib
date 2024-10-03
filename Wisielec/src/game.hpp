@@ -12,7 +12,7 @@ public:
     void Win(char *guestTable, char *blackTable);
     void Lose(int life);
     bool Chance(char *guestWord, char guestSign, int wordSize);
-    std::string DrawWord(std::vector<std::string>);
+    std::string DrawWord(std::vector<std::string> words);
 
 private:
     std::vector<std::string> words;

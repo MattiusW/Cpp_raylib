@@ -20,29 +20,25 @@ int main()
     Words words = Words();
 
     // Draw number
-    std::string randWord = game.DrawWord(words.ViewWords());
+    std::string randWord;
 
     // Get word Size
-    int sizeWord = words.GetWordSize(randWord);
+    int sizeWord = 0;
+
+    // Separate word in table char
+    char *charArrayWord;
+    char *blackWordsTable;
 
     std::cout << "SIZE: " << sizeWord << std::endl;
     std::cout << "WORD: " << randWord << std::endl;
 
-    // Separate word in table char
-    char *charArrayWord = words.GetChars(randWord, sizeWord);
-
+    // Check draw word
+    bool draw = false;
     char sign;
-
-    char *blackWordsTable = words.BlackWords(sizeWord);
 
     bool gameover = false;
 
     int life = 7;
-
-    for (int i = 0; i < sizeWord; i++)
-    {
-        std::cout << "Black table: " << blackWordsTable[i] << std::endl;
-    }
 
     while (!WindowShouldClose())
     {
@@ -55,6 +51,17 @@ int main()
         if (!gameover)
             sign = game.HandleInput();
 
+        if (!draw)
+        {
+            randWord = game.DrawWord(words.ViewWords());
+            // Get word Size
+            sizeWord = words.GetWordSize(randWord);
+            // Separate word in table char
+            charArrayWord = words.GetChars(randWord, sizeWord);
+            blackWordsTable = words.BlackWords(sizeWord);
+            draw = true;
+            _sleep(1000); // Wait to another draw
+        }
         // Check sign
         char *guestTable = game.CompareWords(charArrayWord, blackWordsTable, sign, sizeWord);
 
@@ -82,7 +89,7 @@ int main()
         game.Lose(life);
 
         if (strcmp(charArrayWord, blackWordsTable) == 0)
-            gameover = true;
+            draw = false;
 
         EndDrawing();
     }
