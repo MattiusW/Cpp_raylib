@@ -28,6 +28,7 @@ int main()
     // Separate word in table char
     char *charArrayWord;
     char *blackWordsTable;
+    std::vector<std::string> &tableWords = *words.ViewWords();
 
     std::cout << "SIZE: " << sizeWord << std::endl;
     std::cout << "WORD: " << randWord << std::endl;
@@ -53,7 +54,7 @@ int main()
 
         if (!draw)
         {
-            randWord = game.DrawWord(words.ViewWords());
+            randWord = game.DrawWord(tableWords);
             // Get word Size
             sizeWord = words.GetWordSize(randWord);
             // Separate word in table char

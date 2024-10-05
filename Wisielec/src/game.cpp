@@ -124,7 +124,7 @@ char *Game::CompareWords(char *guestTable, char *blackTable, char guestSign, int
     return blackTable;
 }
 
-std::string Game::DrawWord(std::vector<std::string> words)
+std::string Game::DrawWord(std::vector<std::string> &words)
 {
     std::string drawnWord;
 
