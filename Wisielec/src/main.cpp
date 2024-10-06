@@ -35,6 +35,9 @@ int main()
     // Check draw word
     bool draw = false;
 
+    int rare = 1;
+    char showRare[2];
+
     // check input
     bool input = false;
     char sign;
@@ -76,7 +79,7 @@ int main()
 
         words.DrawLines(sizeWord, guestTable);
 
-        if (sign && !tableWords.empty())
+        if (sign && !gameover)
         {
             bool checkChance = game.Chance(charArrayWord, sign, sizeWord);
 
@@ -96,6 +99,7 @@ int main()
 
         if (strcmp(charArrayWord, blackWordsTable) == 0)
         {
+            rare = words.EndRare(tableSize);
             draw = false;
             input = false;
         }
@@ -109,10 +113,18 @@ int main()
 
         if (input)
             DrawText(viewLetter, 350, 50, 100, GREEN);
-        if (!input && !tableWords.empty())
+        if (!input && !gameover)
             DrawText("Press key!", 150, 70, 70, GREEN);
 
         DrawText(showSize, 750, 10, 20, WHITE);
+
+        if (gameover)
+        {
+            sprintf(showRare, "%d", rare);
+            showRare[1] = '\0';
+            DrawText("Rare: ", 40, 50, 50, GOLD);
+            DrawText(showRare, 200, 50, 50, GOLD);
+        }
 
         EndDrawing();
     }
