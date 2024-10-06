@@ -30,7 +30,6 @@ char *Words::GetChars(std::string word, int wordSize)
 
     for (int i = 0; i < wordSize; i++)
     {
-        std::cout << word[i] << std::endl;
         wordArray[i] = word[i];
     }
 

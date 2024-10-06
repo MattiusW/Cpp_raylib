@@ -9,7 +9,7 @@ public:
     Game();
     char HandleInput();
     char *CompareWords(char *guestWord, char *blackTable, char guestSign, int wordSize);
-    void Win(char *guestTable, char *blackTable);
+    void Win(char *guestTable, char *blackTable, std::vector<std::string> &words);
     void Lose(int life);
     bool Chance(char *guestWord, char guestSign, int wordSize);
     std::string DrawWord(std::vector<std::string> &words);

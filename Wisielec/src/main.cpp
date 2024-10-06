@@ -8,8 +8,6 @@
 
 int main()
 {
-    Color darkGreen = Color{20, 160, 133, 255};
-
     const int screenWidth = 800;
     const int screenHeight = 600;
 
@@ -30,9 +28,6 @@ int main()
     char *blackWordsTable;
     std::vector<std::string> &tableWords = *words.ViewWords();
 
-    std::cout << "SIZE: " << sizeWord << std::endl;
-    std::cout << "WORD: " << randWord << std::endl;
-
     // Check draw word
     bool draw = false;
     char sign;
@@ -44,7 +39,7 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(darkGreen);
+        ClearBackground(BLACK);
         // Convert word to view
         // DrawText(randWord.c_str(), 100, 100, 100, WHITE);
 
@@ -68,7 +63,7 @@ int main()
 
         words.DrawLines(sizeWord, guestTable);
 
-        if (sign)
+        if (sign && !tableWords.empty())
         {
             bool checkChance = game.Chance(charArrayWord, sign, sizeWord);
 
@@ -76,21 +71,19 @@ int main()
             {
                 life--;
             };
-            std::cout << "Szanse: " << checkChance << std::endl;
-            std::cout << "Zycia: " << life << std::endl;
         }
 
         if (life == 0)
             gameover = true;
 
-        // std::cout << "Life: " << life << std::endl;
-
-        // Win Condition
-        game.Win(charArrayWord, blackWordsTable);
-        game.Lose(life);
-
         if (strcmp(charArrayWord, blackWordsTable) == 0)
             draw = false;
+        if (tableWords.empty() && (strcmp(charArrayWord, blackWordsTable) == 0))
+            gameover = true;
+
+        // Win Condition
+        game.Win(charArrayWord, blackWordsTable, tableWords);
+        game.Lose(life);
 
         EndDrawing();
     }

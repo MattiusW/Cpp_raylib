@@ -136,72 +136,77 @@ std::string Game::DrawWord(std::vector<std::string> &words)
         words.erase(words.begin() + drawNumber);
     }
 
-    std::cout << "WordSize: " << words.size() << std::endl;
-    std::cout << words[drawNumber] << std::endl;
-
     return drawnWord;
 };
 
-void Game::Win(char *guestTable, char *blackTable)
+void Game::Win(char *guestTable, char *blackTable, std::vector<std::string> &words)
 {
-    if (strcmp(guestTable, blackTable) == 0)
+    if ((strcmp(guestTable, blackTable) == 0))
     {
-        DrawText("YOU GUEST!", 50, 100, 50, GOLD);
+        DrawText("YOU GUEST!", 50, 200, 50, YELLOW);
+        if (words.empty())
+        {
+            DrawText("ALL WORDS!", 400, 200, 50, GOLD);
+            DrawText("YOU WIN GAME!", 100, 250, 50, GOLD);
+        }
     }
 }
 
 void Game::Lose(int life)
 {
+
+    Color hangmanDrawColor = Color{255, 0, 0, 255};
+
     if (life == 6)
     {
-        DrawText("|", 500, 400, 100, BLACK);
+        DrawText("|", 500, 400, 100, hangmanDrawColor);
     }
     if (life == 5)
     {
-        DrawText("|", 500, 400, 100, BLACK);
-        DrawText("|", 500, 450, 100, BLACK);
+        DrawText("|", 500, 400, 100, hangmanDrawColor);
+        DrawText("|", 500, 450, 100, hangmanDrawColor);
     }
     if (life == 4)
     {
-        DrawText("|", 500, 400, 100, BLACK);
-        DrawText("|", 500, 450, 100, BLACK);
-        DrawText("-", 470, 390, 100, BLACK);
+        DrawText("|", 500, 400, 100, hangmanDrawColor);
+        DrawText("|", 500, 450, 100, hangmanDrawColor);
+        DrawText("-", 470, 390, 100, hangmanDrawColor);
     }
     if (life == 3)
     {
-        DrawText("|", 500, 400, 100, BLACK);
-        DrawText("|", 500, 450, 100, BLACK);
-        DrawText("-", 470, 390, 100, BLACK);
-        DrawText("()", 450, 440, 30, BLACK);
+        DrawText("|", 500, 400, 100, hangmanDrawColor);
+        DrawText("|", 500, 450, 100, hangmanDrawColor);
+        DrawText("-", 470, 390, 100, hangmanDrawColor);
+        DrawText("()", 450, 440, 30, hangmanDrawColor);
     }
     if (life == 2)
     {
-        DrawText("|", 500, 400, 100, BLACK);
-        DrawText("|", 500, 450, 100, BLACK);
-        DrawText("-", 470, 390, 100, BLACK);
-        DrawText("()", 450, 440, 30, BLACK);
-        DrawText("|", 460, 470, 30, BLACK);
+        DrawText("|", 500, 400, 100, hangmanDrawColor);
+        DrawText("|", 500, 450, 100, hangmanDrawColor);
+        DrawText("-", 470, 390, 100, hangmanDrawColor);
+        DrawText("()", 450, 440, 30, hangmanDrawColor);
+        DrawText("|", 460, 470, 30, hangmanDrawColor);
     }
     if (life == 1)
     {
-        DrawText("|", 500, 400, 100, BLACK);
-        DrawText("|", 500, 450, 100, BLACK);
-        DrawText("-", 470, 390, 100, BLACK);
-        DrawText("()", 450, 440, 30, BLACK);
-        DrawText("|", 460, 470, 30, BLACK);
-        DrawText("/", 450, 470, 30, BLACK);
+        DrawText("|", 500, 400, 100, hangmanDrawColor);
+        DrawText("|", 500, 450, 100, hangmanDrawColor);
+        DrawText("-", 470, 390, 100, hangmanDrawColor);
+        DrawText("()", 450, 440, 30, hangmanDrawColor);
+        DrawText("|", 460, 470, 30, hangmanDrawColor);
+        DrawText("/", 450, 470, 30, hangmanDrawColor);
     }
 
     if (life == 0)
     {
-        DrawText("YOU LOSE!", 5, 200, 50, RED);
-        DrawText("|", 500, 400, 100, BLACK);
-        DrawText("|", 500, 450, 100, BLACK);
-        DrawText("-", 470, 390, 100, BLACK);
-        DrawText("()", 450, 440, 30, BLACK);
-        DrawText("|", 460, 470, 30, BLACK);
-        DrawText("/", 450, 470, 30, BLACK);
-        DrawText("/", 450, 479, 30, BLACK);
+        DrawText("YOU LOSE!", 5, 200, 50, hangmanDrawColor);
+        DrawText("|", 500, 400, 100, hangmanDrawColor);
+        DrawText("|", 500, 450, 100, hangmanDrawColor);
+        DrawText("-", 470, 390, 100, hangmanDrawColor);
+        DrawText("()", 450, 440, 30, hangmanDrawColor);
+        DrawText("|", 460, 470, 30, hangmanDrawColor);
+        DrawText("/", 450, 470, 30, hangmanDrawColor);
+        DrawText("/", 450, 479, 30, hangmanDrawColor);
     }
 }
 
