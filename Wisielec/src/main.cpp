@@ -22,14 +22,21 @@ int main()
 
     // Get word Size
     int sizeWord = 0;
+    int tableSize = 0;
 
     // Separate word in table char
     char *charArrayWord;
     char *blackWordsTable;
     std::vector<std::string> &tableWords = *words.ViewWords();
 
+    char viewLetter[2];
+    char showSize[2];
+
     // Check draw word
     bool draw = false;
+
+    // check input
+    bool input = false;
     char sign;
 
     bool gameover = false;
@@ -43,6 +50,8 @@ int main()
         // Convert word to view
         // DrawText(randWord.c_str(), 100, 100, 100, WHITE);
 
+        DrawText("WORDS:", 650, 10, 20, WHITE);
+
         // Input sign
         if (!gameover)
             sign = game.HandleInput();
@@ -52,6 +61,10 @@ int main()
             randWord = game.DrawWord(tableWords);
             // Get word Size
             sizeWord = words.GetWordSize(randWord);
+            tableSize = tableWords.size();
+            // Show word Size
+            sprintf(showSize, "%d", tableSize);
+            showSize[1] = '\0';
             // Separate word in table char
             charArrayWord = words.GetChars(randWord, sizeWord);
             blackWordsTable = words.BlackWords(sizeWord);
@@ -71,19 +84,35 @@ int main()
             {
                 life--;
             };
+            // convert char to view
+            viewLetter[0] = sign;
+            viewLetter[1] = '\0'; // Show input letter
+
+            input = true;
         }
 
         if (life == 0)
             gameover = true;
 
         if (strcmp(charArrayWord, blackWordsTable) == 0)
+        {
             draw = false;
+            input = false;
+        }
+
         if (tableWords.empty() && (strcmp(charArrayWord, blackWordsTable) == 0))
             gameover = true;
 
         // Win Condition
         game.Win(charArrayWord, blackWordsTable, tableWords);
         game.Lose(life);
+
+        if (input)
+            DrawText(viewLetter, 350, 50, 100, GREEN);
+        if (!input && !tableWords.empty())
+            DrawText("Press key!", 150, 70, 70, GREEN);
+
+        DrawText(showSize, 750, 10, 20, WHITE);
 
         EndDrawing();
     }

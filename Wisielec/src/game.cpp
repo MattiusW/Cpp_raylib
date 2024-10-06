@@ -199,7 +199,7 @@ void Game::Lose(int life)
 
     if (life == 0)
     {
-        DrawText("YOU LOSE!", 5, 200, 50, hangmanDrawColor);
+        DrawText("YOU LOSE!", 100, 200, 50, hangmanDrawColor);
         DrawText("|", 500, 400, 100, hangmanDrawColor);
         DrawText("|", 500, 450, 100, hangmanDrawColor);
         DrawText("-", 470, 390, 100, hangmanDrawColor);
